@@ -1,4 +1,7 @@
-var textInput = $('textarea');
+var momentNow = moment().format('dddd, MMMM Do, YYYY');
+var moment24 = moment().format('H');
+var time = $('.hour');
+var task = $('.description');
 var btn1 = $('#btn1');
 var btn2 = $('#btn2');
 var btn3 = $('#btn3');
@@ -67,74 +70,38 @@ var schedule = [
 
 
 
-// var tasks = [];
 
-// // save to local storage
-// function saveTask() {
-//     for (var i = 0; i < schedule.length; i++) {
-
-//     }
-
-//     var task = {
-//         todo: textInput.value
-//     }
-//     localStorage.setItem('task', JSON.stringify(task));
-// }
-
-// function renderTask() {
-//     // use JSON.parse() to convert text to object
-//     var lastTask = JSON.parse(localStorage.getItem('task'));
-//     // check if data returned, if not, exit out of function
-//     if (lastTask !== null) {
-//         textInput.text(textInput.value)
-//         console.log(textInput.value)
-//     } else {
-//         return;
-//     }
-// }
-
-
-var task9 = document.getElementById('task1');
-
-// local storage
-// $('#btn1').on('click', function(event) {
-//     var currentTask = {
-//         time: schedule[0].hour,
-//         task: $('#task1').val()   
-//     }
-//     console.log(currentTask);
-
-//     localStorage.setItem('currentTask', JSON.stringify(currentTask));
-//     console.log(localStorage.getItem('currentTask'));
-    
-//     if (currentTask !== null) {
-//         var task9 = JSON.parse(localStorage.getItem('currentTask'));
-//         textInput.textContent = currentTask.task;
-//     } else {
-//         return;
-//     }
-// })  
-
-
-$('#btn1').on('click', function(event) {
-    var currentTask = {
-        // time: schedule[0].hour,
-        task: $('#task1').val()   
-    }
+// set task input to local storage
+function saveTask1() {
+    var currentTask= {
+        task: $('#task1').val()
+    };
     console.log(currentTask);
 
     localStorage.setItem('currentTask', JSON.stringify(currentTask));
-    console.log(localStorage.getItem('currentTask'));
-    
+}
 
-    var getCurrentTask = localStorage.getItem('currentTask');
-    console.log('getCurrentTask', JSON.parse(getCurrentTask));
-    document.getElementById('task1').innerHTML = getCurrentTask;
-    // if (currentTask !== null) {
-    //     // var task9 = JSON.parse(localStorage.getItem('currentTask'));
-    //     var task9 = localStorage.getItem('currentTask')
-    //     textInput.textContent = currentTask.task;
-    // } else {
-    //     return;
-    // }
-})  
+// get task input from local storage
+function renderTask1() {
+    var savedTask = JSON.parse(localStorage.getItem('currentTask'));
+
+    if (savedTask !== null) {
+        document.getElementById('task1').innerHTML = savedTask.task;
+    } else {
+        return;
+    }
+}
+
+
+// local storage on click
+$('#btn1').on('click', function(event) {
+    event.preventDefault();
+    saveTask1();
+    renderTask1();
+});
+
+
+function init() {
+    renderTask1();
+}
+init();
