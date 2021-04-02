@@ -1,7 +1,7 @@
 var momentNow = moment().format('dddd, MMMM Do, YYYY');
 var momentNow24 = moment().format('HH:mm');
+var today = moment().format('dddd, MMMM Do, YYYY');
 var timeBlockRow = document.querySelectorAll('.row')
-// var time = $('.hour');
 var task = $('.description');
 var saveBtn = $('.saveBtn');
 var btn1 = $('#btn1');
@@ -14,77 +14,91 @@ var btn7 = $('#btn7');
 var btn8 = $('#btn8');
 var btn9 = $('#btn9');
 
-
-
-
-// Time and Day display in jumbotron
-function update() {
-    $('#currentDay').html(moment().format('dddd, MMMM Do, YYYY'));
+// Date display in jumbotron
+function currentDay () {
+    $('#currentDay').text(today);
+    console.log(today);
 }
-setInterval(update, 1000);
+currentDay();
+// Time and Day display in jumbotron
+// function update() {
+//     $('#currentDay').html(moment().format('dddd, MMMM Do, YYYY'));
+// }
+// setInterval(update, 1000);
+
 
 // timeblocks
 var schedule = [
     { 
         hour: 9,
         moment: moment('09:00 AM', 'h:mm: a').format('HH:mm'),
-        task: "",
+        task: $('#task1'),
         save: btn1
         
     },
     { 
         hour: 10,
         moment: moment('10:00 AM', 'h:mm: a').format('HH:mm'),
-        task: "",
+        task: $('#task2'),
         save: btn2
     },
     { 
         hour: 11,
         moment: moment('11:00 AM', 'h:mm: a').format('HH:mm'),
-        task: "",
+        task: $('#task3'),
         save: btn3
     },
     { 
         hour: 12,
         moment: moment('12:00 PM', 'h:mm: a').format('HH:mm'),
-        task: "",
+        task: $('#task4'),
         save: btn4
     },
     { 
         hour: 13,
         moment: moment('01:00 PM', 'h:mm: a').format('HH:mm'),
-        task: "",
+        task: $('#task5'),
         save: btn5
     },
     { 
         hour: 14,
         moment: moment('02:00 PM', 'h:mm: a').format('HH:mm'),
-        task: "",
+        task: $('#task6'),
         save: btn6
     },
     { 
         hour: 15,
         moment: moment('03:00 PM', 'h:mm: a').format('HH:mm'),
-        task: "",
+        task: $('#task7'),
         save: btn7
     },
     { 
         hour: 16,
         moment: moment('04:00 PM', 'h:mm: a').format('HH:mm'),
-        task: "",
+        task: $('#task8'),
         save: btn8
     },
     { 
         hour: 17,
         moment: moment('05:00 PM', 'h:mm: a').format('HH:mm'),
-        task: "",
+        task: $('#task9'),
         save: btn9
     },
 ]
 
-if (schedule[0].moment > momentNow24) {
-    console.log('this works')
+for (i = 0; i < schedule.length; i++) {
+    var moment = schedule[i].moment
+    console.log(moment);
+
+    if (moment[i] > momentNow24) {
+        $('.description').css('background-color', '#d3d3d3')
+    } else if (moment[i] === momentNow24) {
+        $('.description').css('background-color', '#ff6961')
+    } else {
+        $('.description').css('background-color', '#77dd77')
+    }
 }
+
 
 
 
