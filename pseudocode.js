@@ -4,7 +4,6 @@
         // input text area
         // button is div with rounded corners
 
-
         // hour div/ text input/ save button
     // Font awesome getbootstrap v4.6 search icons 
         // bootstrap icon cdn link
@@ -47,3 +46,7 @@
     //     console.log(todoInput);
     // }
     // }
+
+    // use moment to extract time from 24 hr clock 
+        // parse int? 
+    
